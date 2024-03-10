@@ -2,14 +2,14 @@ package com.example.springtutorial.service;
 
 import com.example.springtutorial.domain.Member;
 import com.example.springtutorial.repository.MemberRepository;
-import com.example.springtutorial.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
     private final MemberRepository memberRepository;
-
 
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -18,7 +18,7 @@ public class MemberService {
     /**
      * 회원 가입
      */
-    public Long join(Member member){
+    public Long join(Member member) {
         validateDuplicateMember(member);
 
 
@@ -36,14 +36,14 @@ public class MemberService {
     /**
      * 전체 조회
      */
-    public List<Member> findMembers(){
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-    
+
     /**
      * 회원 조회
      */
-    public Optional<Member> findOne(Long memberId){
+    public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
 
