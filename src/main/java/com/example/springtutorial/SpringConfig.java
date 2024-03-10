@@ -1,20 +1,27 @@
 package com.example.springtutorial;
 
 import com.example.springtutorial.repository.MemberRepository;
-import com.example.springtutorial.repository.MemoryMemberRepository;
 import com.example.springtutorial.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository());
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
-    public MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
+    public MemberService memberService(){
+        return new MemberService(memberRepository);
     }
+
+//    @Bean
+//    public MemberRepository memberRepository(){
+//        return new JpaMemberRepository(em);
+//    }
 }
