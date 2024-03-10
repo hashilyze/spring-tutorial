@@ -1,5 +1,6 @@
 package com.example.springtutorial;
 
+import com.example.springtutorial.aop.TimeTraceAop;
 import com.example.springtutorial.repository.MemberRepository;
 import com.example.springtutorial.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,4 @@ public class SpringConfig {
     public MemberService memberService(){
         return new MemberService(memberRepository);
     }
-
-//    @Bean
-//    public MemberRepository memberRepository(){
-//        return new JpaMemberRepository(em);
-//    }
 }
